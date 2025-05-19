@@ -11,21 +11,22 @@ const consume = async (gen) => {
   return res;
 }
 
-const patterns = ['../stories/**/*.jsx'];
+const patterns = ['../stories/**/*.jsx', '../stories/**/*.mdx'];
+const ignore = ['**/*.mdx'];
 
 
 console.log('tinygloby');
-console.log(await tinyglob(patterns, {cwd: './stories'}))
-console.log(await tinyglob(patterns, {cwd: './.storybook'}))
+console.log(await tinyglob(patterns, {cwd: './stories', ignore}))
+console.log(await tinyglob(patterns, {cwd: './.storybook', ignore}))
 
 console.log('globby');
-console.log(await globby(patterns, {cwd: './stories'}))
-console.log(await globby(patterns, {cwd: './.storybook'}))
+console.log(await globby(patterns, {cwd: './stories', ignore}))
+console.log(await globby(patterns, {cwd: './.storybook', ignore}))
 
 console.log('fast-glob');
-console.log(await fastglob(patterns, {cwd: './stories'}))
-console.log(await fastglob(patterns, {cwd: './.storybook'}))
+console.log(await fastglob(patterns, {cwd: './stories', ignore}))
+console.log(await fastglob(patterns, {cwd: './.storybook', ignore}))
 
 console.log('native');
-console.log(await consume(fs.glob(patterns, {cwd: './stories'})))
-console.log(await consume(fs.glob(patterns, {cwd: './.storybook'})))
+console.log(await consume(fs.glob(patterns, {cwd: './stories', ignore})))
+console.log(await consume(fs.glob(patterns, {cwd: './.storybook', ignore})))
