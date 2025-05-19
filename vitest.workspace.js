@@ -1,0 +1,6 @@
+import { defineWorkspace } from "vitest/config";
+
+export default defineWorkspace([
+  "./vitest.config.js",
+  "./.storybook/vitest.config.js",
+]);
