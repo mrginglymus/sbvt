@@ -2659,6 +2659,7 @@ __metadata:
     react-dom: "npm:^19.1.0"
     storybook: "npm:9.0.0-rc.2"
     tinyglobby: "npm:0.2.3"
+    tinyglobby-fix: "https://pkg.pr.new/tinyglobby@119"
     vite: "npm:^6.3.5"
     vitest: "npm:3.1.2"
   languageName: unknown
@@ -2955,6 +2956,16 @@ __metadata:
   version: 0.3.2
   resolution: "tinyexec@npm:0.3.2"
   checksum: 10c0/3efbf791a911be0bf0821eab37a3445c2ba07acc1522b1fa84ae1e55f10425076f1290f680286345ed919549ad67527d07281f1c19d584df3b74326909eb1f90
+  languageName: node
+  linkType: hard
+
+"tinyglobby-fix@https://pkg.pr.new/tinyglobby@119":
+  version: 0.2.13
+  resolution: "tinyglobby-fix@https://pkg.pr.new/tinyglobby@119"
+  dependencies:
+    fdir: "npm:^6.4.4"
+    picomatch: "npm:^4.0.2"
+  checksum: 10c0/d3c6a13d466918817637a6a2bf05e2793a846ff221bde2413b03d6c323d7440859b19b6ca4c412d8d521669e1675f4bd45da0983ae93c5e6fea1877ab601f28a
   languageName: node
   linkType: hard
 

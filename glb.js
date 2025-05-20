@@ -1,11 +1,12 @@
 import {glob as tinyglob} from 'tinyglobby';
+import {glob as fixedtinyglob} from 'tinyglobby-fix'
 import fs from 'node:fs/promises';
 import {globby} from 'globby';
 import fastglob from 'fast-glob'
 
-const consume = async (gen) => {
+const native = async (patterns, options) => {
   const res = [];
-  for await (const x of await gen) {
+  for await (const x of await fs.glob(patterns, options)) {
     res.push(x);
   }
   return res;
@@ -14,19 +15,20 @@ const consume = async (gen) => {
 const patterns = ['../stories/**/*.jsx', '../stories/**/*.mdx'];
 const ignore = ['**/*.mdx'];
 
+const cwds = ['./stories', './.storybook'];
 
-console.log('tinygloby');
-console.log(await tinyglob(patterns, {cwd: './stories', ignore}))
-console.log(await tinyglob(patterns, {cwd: './.storybook', ignore}))
+const globs = {
+  tinyglobby: tinyglob,
+  'tinyglobby (fixed)': fixedtinyglob,
+  globby,
+  fastglob,
+  native
+}
 
-console.log('globby');
-console.log(await globby(patterns, {cwd: './stories', ignore}))
-console.log(await globby(patterns, {cwd: './.storybook', ignore}))
-
-console.log('fast-glob');
-console.log(await fastglob(patterns, {cwd: './stories', ignore}))
-console.log(await fastglob(patterns, {cwd: './.storybook', ignore}))
-
-console.log('native');
-console.log(await consume(fs.glob(patterns, {cwd: './stories', ignore})))
-console.log(await consume(fs.glob(patterns, {cwd: './.storybook', ignore})))
+for (const [name, globber] of Object.entries(globs)) {
+  console.log(name);
+  for (const cwd of cwds) {
+    console.log(`${cwd}: `, await globber(patterns, {cwd, ignore}))
+  }
+  console.log('=========')
+}
