@@ -12,7 +12,7 @@ const native = async (patterns, options) => {
   return res;
 }
 
-const patterns = ['../stories/**/*.jsx', '../stories/**/*.mdx'];
+const patterns = ['../stories/*.jsx', '../stories/*.mdx', './extra/*.jsx'];
 const ignore = ['**/*.mdx'];
 
 const cwds = ['./stories', './.storybook'];
